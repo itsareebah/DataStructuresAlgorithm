@@ -17,12 +17,17 @@ class Solution(object):
         
         end = self.reverse_list(slow)
 
-        while end and head:
-            temp = head.next
-            head.next = end
-            head = head.next
-            head.next = temp
-            end = end.next
+        while start and end:
+            temp = start.next # save next value in temp
+            start.next = end # point next to next of end
+            start = temp # move to the temp val
+
+            temp = end.next # save next val in temp
+            end.next = start # point next to next val from start
+            end = temp # move to temp
+        if start:
+            start.next = None
+
 
     def reverse_list(self, curr):
         prev = None
